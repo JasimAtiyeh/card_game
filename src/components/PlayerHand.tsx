@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Card } from "../common/types";
 import PlayingCard from "./PlayingCard";
 
@@ -9,14 +9,12 @@ type Props = {
 
 // Cards being removed but page not rerendering
 export default function PlayerHand({ playerName, cards }: Props) {
-  const playerHand = useMemo(() => cards, [cards]);
+  const [playerHand, setPlayerHand] = useState(cards);
 
   function removeCard({ suit, value }: Card) {
-    const index = cards.findIndex(
-      (card) => card.suit === suit && card.value === value
+    setPlayerHand((prevHand) =>
+      prevHand.filter((card) => card.suit !== suit || card.value !== value)
     );
-    cards.splice(index, 1);
-    return cards;
   }
 
   return (

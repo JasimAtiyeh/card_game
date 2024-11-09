@@ -22,7 +22,7 @@ export default function StartModal({ createPlayers }: Props) {
       <label htmlFor="playerName">Enter name: </label>
       <input type="text" name="playerName" />
       <label htmlFor="numberOfPlayers">Number of opponents: </label>
-      <input type="number" name="numberOfPlayers" defaultValue={2} />
+      <input type="number" name="numberOfPlayers" defaultValue={1} />
       <input type="submit" value="Ok" />
     </form>
   ) : null;
