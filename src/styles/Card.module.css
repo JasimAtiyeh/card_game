@@ -1,0 +1,27 @@
+.heart {
+  color: red;
+}
+.diamond {
+  color: red;
+}
+.card {
+  border: 1px solid black;
+  border-radius: 10%;
+  width: 75px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-between;
+  font-size: 22px;
+}
+.card > div:nth-child(1) {
+  align-self: flex-start;
+}
+.card > div:nth-child(2) {
+  align-self: center;
+  font-size: 26px;
+}
+.card > div:nth-child(3) {
+  align-self: flex-end;
+}
