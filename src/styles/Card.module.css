@@ -1,7 +1,4 @@
-.heart {
-  color: red;
-}
-.diamond {
+.red {
   color: red;
 }
 .card {
@@ -14,6 +11,7 @@
   padding: 10px;
   justify-content: space-between;
   font-size: 22px;
+  cursor: pointer;
 }
 .card > div:nth-child(1) {
   align-self: flex-start;
