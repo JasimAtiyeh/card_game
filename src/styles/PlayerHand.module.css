@@ -1,0 +1,20 @@
+.playerHand {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.boardPile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.cards {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}

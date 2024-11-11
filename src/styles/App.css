@@ -1,3 +1,23 @@
-.board {
+header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #333333, #555555);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #f8f8f8;
+  font-family: "Arial", sans-serif;
+  font-size: 1.5em;
+  border-radius: 5px;
+}
+
+.header-title {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.header-turn {
+  font-size: 1em;
+  font-style: italic;
+  color: #ffca28; /* Highlighted color for the turn */
 }

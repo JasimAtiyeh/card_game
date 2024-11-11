@@ -1,0 +1,49 @@
+/* Modal backdrop */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal window */
+.modalWindow {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  max-width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+/* Basic form styling inside modal */
+.modalWindow form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalWindow input[type="text"],
+.modalWindow input[type="number"],
+.modalWindow input[type="submit"] {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.modalWindow input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.modalWindow input[type="submit"]:hover {
+  background-color: #0056b3;
+}

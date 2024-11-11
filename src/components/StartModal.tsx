@@ -1,29 +1,59 @@
-import { SyntheticEvent, useState } from "react";
+import { Dispatch, SetStateAction, SyntheticEvent } from "react";
 import "../styles/StartModal.css";
+import { useGameContext } from "../common/GameContext";
 
-type Props = {
-  createPlayers: Function;
-};
+type Props = { setShowStartModal: Dispatch<SetStateAction<boolean>> };
 
-export default function StartModal({ createPlayers }: Props) {
-  const [showStartModal, setShowStartModal] = useState<boolean>(true);
+export default function StartModal({ setShowStartModal }: Props) {
+  const { setPlayers, deck, setDeck } = useGameContext();
 
-  function handleSubmit(event: SyntheticEvent<HTMLFormElement, SubmitEvent>) {
-    event.preventDefault();
-    const playerName = (event.target as HTMLFormElement)["playerName"].value;
-    const numberOfPlayers = (event.target as HTMLFormElement)["numberOfPlayers"]
-      .value;
-    createPlayers(playerName, numberOfPlayers);
+  function handleSubmit({
+    target,
+  }: SyntheticEvent<HTMLFormElement, SubmitEvent>) {
+    const { playerName, botCount } = target as HTMLFormElement;
+    const name = playerName.value;
+    const botCountValue = parseInt(botCount.value, 10);
+    createPlayers(name, botCountValue);
     setShowStartModal(false);
   }
 
-  return showStartModal ? (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="playerName">Enter name: </label>
-      <input type="text" name="playerName" />
-      <label htmlFor="numberOfPlayers">Number of opponents: </label>
-      <input type="number" name="numberOfPlayers" defaultValue={1} />
-      <input type="submit" value="Ok" />
-    </form>
-  ) : null;
+  function createPlayers(playerName: string, botCount: number) {
+    const numberOfPlayers = botCount + 1;
+    const newPlayers = Array.from({ length: numberOfPlayers }).map((_, i) => {
+      const faceDown = deck.splice(0, 4);
+      const faceUp = deck.splice(0, 4);
+      const hand = deck.splice(0, 4);
+
+      return {
+        name: i === 0 ? playerName : `Computer_${i}`,
+        hand,
+        faceUp,
+        faceDown,
+      };
+    });
+
+    setPlayers(newPlayers);
+    setDeck(deck);
+  }
+
+  return (
+    <div className="modalBackdrop">
+      <div className="modalWindow">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="playerName">Enter name: </label>
+          <input type="text" name="playerName" required />
+          <label htmlFor="botCount">Number of opponents: </label>
+          <input
+            type="number"
+            name="botCount"
+            defaultValue={1}
+            min="1"
+            max="3"
+            required
+          />
+          <input type="submit" value="Ok" />
+        </form>
+      </div>
+    </div>
+  );
 }

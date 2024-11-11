@@ -1,0 +1,65 @@
+.board {
+  display: grid;
+  gap: 15px;
+  grid-template-areas:
+    ". topPlayer ."
+    "leftPlayer center rightPlayer"
+    ". bottomPlayer .";
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 1.25em;
+  margin-bottom: 10px;
+}
+
+.top,
+.bottom,
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
+.top,
+.bottom {
+  justify-content: center;
+}
+
+.left,
+.right {
+  align-items: center;
+}
+
+.top {
+  grid-area: topPlayer;
+}
+
+.left {
+  grid-area: leftPlayer;
+  justify-content: flex-end;
+}
+
+.right {
+  grid-area: rightPlayer;
+  justify-content: flex-start;
+}
+
+.bottom {
+  grid-area: bottomPlayer;
+}
+
+.center {
+  grid-area: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ececec;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.deck,
+.discardPile {
+  width: 100px;
+  height: 140px;
+  align-content: center;
+}

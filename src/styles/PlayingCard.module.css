@@ -1,0 +1,54 @@
+.red {
+  color: #d9534f;
+}
+
+.black {
+  color: #333333;
+}
+
+@keyframes flyToDiscardPile {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(var(--discard-x), var(--discard-y)) scale(0.6);
+    opacity: 0;
+  }
+}
+
+.card.fly {
+  animation: flyToDiscardPile 0.5s forwards;
+}
+
+.card {
+  position: relative; /* Required for smooth transitions */
+  background-color: #f8f8f8;
+  border: 1px solid #333;
+  border-radius: 10%;
+  width: 70px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-between;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card > div:nth-child(1) {
+  align-self: flex-start;
+}
+
+.card > div:nth-child(2) {
+  align-self: center;
+  font-size: 26px;
+}
+
+.card > div:nth-child(3) {
+  align-self: flex-end;
+}

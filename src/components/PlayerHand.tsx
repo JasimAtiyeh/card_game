@@ -1,30 +1,37 @@
-import { useMemo, useState } from "react";
-import { Card } from "../common/types";
-import PlayingCard from "./PlayingCard";
+import { Player } from "../common/GameContext";
+import styles from "../styles/PlayerHand.module.css";
+import Pile from "./CardPile";
 
 type Props = {
-  playerName: string;
-  cards: Card[];
+  player: Player;
 };
 
-// Cards being removed but page not rerendering
-export default function PlayerHand({ playerName, cards }: Props) {
-  const [playerHand, setPlayerHand] = useState(cards);
-
-  function removeCard({ suit, value }: Card) {
-    setPlayerHand((prevHand) =>
-      prevHand.filter((card) => card.suit !== suit || card.value !== value)
-    );
-  }
-
+export default function PlayerHand({ player }: Props) {
+  const { name, faceDown, faceUp, hand } = player;
   return (
-    <section>
-      <div>{playerName}</div>
-      {playerHand.map(({ suit, value }, index) => (
-        <div onClick={() => removeCard({ suit, value })}>
-          <PlayingCard key={index} suit={suit} value={value} />
-        </div>
-      ))}
-    </section>
+    <>
+      <h3>{name}</h3>
+      <div className={styles.playerHand}>
+        {faceDown.length > 0 && (
+          <Pile
+            title="Face-Down"
+            cards={faceDown}
+            pile="faceDown"
+            playerName={name}
+          />
+        )}
+        {faceUp.length > 0 && (
+          <Pile
+            title="Face-Up"
+            cards={faceUp}
+            pile="faceUp"
+            playerName={name}
+          />
+        )}
+        {hand.length > 0 && !name.includes("Computer") && (
+          <Pile title="Your Hand" cards={hand} pile="hand" playerName={name} />
+        )}
+      </div>
+    </>
   );
 }
